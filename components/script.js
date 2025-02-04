@@ -132,10 +132,18 @@ class App {
       className: "button button-save",
       text: "Save Game",
       onClick: () => {
-        localStorage.setItem("game", this.currentIndex);
+        if (this.currentIndex.length !== 0) {
+          localStorage.setItem("game", this.currentIndex);
+        } else if (localStorage.getItem("game")) {
+          localStorage.removeItem("game");
+        }
         localStorage.setItem("seconds", this.timer.getSeconds());
         localStorage.setItem("minutes", this.timer.getMinutes());
-        localStorage.setItem("cross", this.crossIndex);
+        if (this.crossIndex.length !== 0) {
+          localStorage.setItem("cross", this.crossIndex);
+        } else if (localStorage.getItem("cross")) {
+          localStorage.removeItem("cross");
+        }
       },
     });
 
@@ -385,24 +393,30 @@ class App {
 
   getLastGame() {
     this.resetGame();
-    const lastIndexGame = localStorage.getItem("game").split(",");
-    this.currentIndex = lastIndexGame;
 
-    const lastCrossIndexGame = localStorage.getItem("cross").split(",");
-    this.crossIndex = lastCrossIndexGame;
-    console.log(lastIndexGame[0]);
-    lastIndexGame.forEach((item) => {
-      this.cellsContainer.getChildren()[item].addClass("grid__cell--active");
-    });
-    lastCrossIndexGame.forEach((item) => {
-      this.cellsContainer.getChildren()[item].addClass("grid__cell--cross");
-      this.cellsContainer.getChildren()[item].appendChildren([
-        new Component({ className: `grid__cell-line first-line` }),
-        new Component({
-          className: `grid__cell-line second-line`,
-        }),
-      ]);
-    });
+    if (localStorage.getItem("game")) {
+      const lastIndexGame = localStorage.getItem("game").split(",");
+      this.currentIndex = lastIndexGame;
+
+      lastIndexGame.forEach((item) => {
+        this.cellsContainer.getChildren()[item].addClass("grid__cell--active");
+      });
+    }
+
+    if (localStorage.getItem("cross")) {
+      const lastCrossIndexGame = localStorage.getItem("cross").split(",");
+      this.crossIndex = lastCrossIndexGame;
+
+      lastCrossIndexGame.forEach((item) => {
+        this.cellsContainer.getChildren()[item].addClass("grid__cell--cross");
+        this.cellsContainer.getChildren()[item].appendChildren([
+          new Component({ className: `grid__cell-line first-line` }),
+          new Component({
+            className: `grid__cell-line second-line`,
+          }),
+        ]);
+      });
+    }
   }
 
   getSolutions() {
