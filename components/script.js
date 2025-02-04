@@ -270,7 +270,7 @@ class App {
           this.grid.offClick();
           this.controlSound(this.audioWin);
           this.modal.updateTextContent(
-            `Great! You have solved the nonogram in ${this.timer.getMinutes() * 60 + this.timer.getSeconds()} seconds!`,
+            `Great! You have solved the nonogram in ${this.timer.getTime()} seconds!`,
           );
           this.modal.toggleClass("modal--hidden");
           this.saveScore();
