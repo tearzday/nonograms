@@ -1,0 +1,29 @@
+.select {
+    font-size: 23px;
+    padding: 10px 30px;
+    text-transform: uppercase;
+    max-width: 200px;
+    grid-area: 1 / 2 / 2 / 3;
+    margin: 1px auto 0px;
+    background-color: $color-black;
+    color: $color-white;
+    transition: 0.3s;
+
+    @media (max-width: 1120px) {
+        padding: 5px 20px;
+        font-size: 20px;
+    }
+
+
+
+    &:hover {
+        cursor: pointer;
+        color: $color-black;
+        background-color: $color-white;
+    }
+
+    &--dark {
+        background-color: $color-white;
+        color: $color-black;
+    }
+}

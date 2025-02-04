@@ -1,0 +1,105 @@
+@import 'base/normalize';
+@import 'base/fonts';
+
+@import 'abstracts/constants';
+
+@import '../../components/Modal/modal';
+@import '../../components/Grid/grid';
+@import '../../components/Select/select';
+@import '../../components/Button/button';
+@import '../../components/Timer/timer';
+
+body {
+    min-height: 100svh;
+    background-color: $color-white;
+}
+
+.body {
+    &--dark {
+        background-color: $color-black;
+
+        &>.container {
+            &>.navigation>.button {
+                border: 2px solid $color-white;
+                color: $color-black;
+                background-color: $color-white;
+            }
+
+            &>.grid {
+                &>.grid__col>.grid__col-item {
+                    background-color: $color-black;
+                    border-color: $color-white;
+                    color: $color-white;
+                }
+
+                &>.grid__col>.grid__container-col>.grid__col-item {
+                    background-color: $color-black;
+                    border-color: $color-white;
+                    color: $color-white;
+                }
+
+                &>.grid__row>.grid__row-item {
+                    background-color: $color-black;
+                    border-color: $color-white;
+                    color: $color-white;
+                }
+
+                &>.grid__row>.grid__container-row>.grid__row-item {
+                    background-color: $color-black;
+                    border-color: $color-white;
+                    color: $color-white;
+                }
+
+
+                &>.grid__cells {
+                    border-color: $color-white;
+
+                    &>.grid__cell {
+                        background-color: $color-black;
+                        border-color: $color-white;
+
+                        &>.grid__cell-line {
+                            background-color: $color-white;
+                        }
+                    }
+
+                    &>.grid__cell--active {
+                        background-color: $color-white;
+                    }
+
+                    &>.grid__cell-line {
+                        background-color: $color-white;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.container {
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.navigation {
+    display: flex;
+    max-width: 1200px;
+    margin: 10px auto;
+    gap: 5px;
+
+    @media (max-width: 860px) {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        margin: 5px auto;
+        justify-items: center;
+    }
+
+    @media (max-width: 490px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.no-point {
+    pointer-events: none;
+}
