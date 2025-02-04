@@ -644,6 +644,9 @@ body {
 .body--dark {
   background-color: #272727;
 }
+.body--dark > .container > .timer {
+  color: #E3E2DE;
+}
 .body--dark > .container > .navigation > .button {
   border: 2px solid #E3E2DE;
   color: #272727;

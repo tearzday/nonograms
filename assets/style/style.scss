@@ -19,6 +19,10 @@ body {
         background-color: $color-black;
 
         &>.container {
+            &>.timer {
+                color: $color-white;
+            }
+
             &>.navigation>.button {
                 border: 2px solid $color-white;
                 color: $color-black;
