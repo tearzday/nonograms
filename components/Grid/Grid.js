@@ -23,7 +23,7 @@ export default class Grid extends Component {
     if (onContext) {
       this.onContext = onContext;
       this.addListener("contextmenu", () => {
-        this.onContext();
+        this.onContext(this.getNode().getAttribute("data-position"));
       });
     }
   }

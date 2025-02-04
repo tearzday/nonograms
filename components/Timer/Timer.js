@@ -37,7 +37,6 @@ export default class Timer extends Component {
   }
 
   stopTimer() {
-    console.log("test");
     this.isStart = false;
     clearInterval(this.timer);
     this.second = 0;

@@ -36,6 +36,8 @@ class App {
 
   currentIndex = [];
 
+  crossIndex = [];
+
   isSolution = false;
 
   isSound = true;
@@ -115,7 +117,6 @@ class App {
       onClick: () => {
         this.getLastGame();
         this.timer.setSaveTime();
-        console.log(this.timer.getTime());
       },
     });
 
@@ -134,6 +135,7 @@ class App {
         localStorage.setItem("game", this.currentIndex);
         localStorage.setItem("seconds", this.timer.getSeconds());
         localStorage.setItem("minutes", this.timer.getMinutes());
+        localStorage.setItem("cross", this.crossIndex);
       },
     });
 
@@ -229,7 +231,14 @@ class App {
             this.timer.startTimer();
           }
         },
-        onContext: () => {
+        onContext: (item) => {
+          const index = this.crossIndex.indexOf(item);
+          if (index !== -1) {
+            this.crossIndex.splice(index, 1);
+          } else {
+            this.crossIndex.push(item);
+          }
+
           this.controlSound(this.audioClick);
           if (!this.timer.getIsStart()) {
             this.timer.startTimer();
@@ -356,6 +365,7 @@ class App {
     });
 
     this.currentIndex = [];
+    this.crossIndex = [];
     this.generateCells(25);
     this.generateNonogramInfo(this.nonogram);
     this.generateGrid();
@@ -369,6 +379,7 @@ class App {
     this.generateGrid();
     this.isSolution = false;
     this.timer.setTextContent("00:00");
+    this.crossIndex = [];
   }
 
   getLastGame() {
@@ -376,8 +387,21 @@ class App {
     const lastIndexGame = localStorage.getItem("game").split(",");
     this.currentIndex = lastIndexGame;
 
+    const lastCrossIndexGame = localStorage.getItem("cross").split(",");
+    this.crossIndex = lastCrossIndexGame;
+
     lastIndexGame.forEach((item) => {
       this.cellsContainer.getChildren()[item].addClass("grid__cell--active");
+    });
+
+    lastCrossIndexGame.forEach((item) => {
+      this.cellsContainer.getChildren()[item].addClass("grid__cell--cross");
+      this.cellsContainer.getChildren()[item].appendChildren([
+        new Component({ className: `grid__cell-line first-line` }),
+        new Component({
+          className: `grid__cell-line second-line`,
+        }),
+      ]);
     });
   }
 
