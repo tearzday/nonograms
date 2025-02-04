@@ -23,7 +23,7 @@ export default class Timer extends Component {
   startTimer() {
     this.isStart = true;
     this.timer = setInterval(() => {
-      if (this.second === 60) {
+      if (this.second === 59) {
         this.minutes += 1;
         this.second = 0;
       } else {
