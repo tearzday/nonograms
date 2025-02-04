@@ -63,7 +63,7 @@ export default class Timer extends Component {
     if (localStorage.getItem("seconds") || localStorage.getItem("minutes")) {
       this.second = +localStorage.getItem("seconds");
       this.minutes = +localStorage.getItem("minutes");
-
+      console.log(this.getTime());
       this.setTextContent(this.getTime());
     }
   }

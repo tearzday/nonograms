@@ -232,6 +232,7 @@ class App {
           }
         },
         onContext: (item) => {
+          console.log(this.crossIndex);
           const index = this.crossIndex.indexOf(item);
           if (index !== -1) {
             this.crossIndex.splice(index, 1);
@@ -389,11 +390,10 @@ class App {
 
     const lastCrossIndexGame = localStorage.getItem("cross").split(",");
     this.crossIndex = lastCrossIndexGame;
-
+    console.log(lastIndexGame[0]);
     lastIndexGame.forEach((item) => {
       this.cellsContainer.getChildren()[item].addClass("grid__cell--active");
     });
-
     lastCrossIndexGame.forEach((item) => {
       this.cellsContainer.getChildren()[item].addClass("grid__cell--cross");
       this.cellsContainer.getChildren()[item].appendChildren([
